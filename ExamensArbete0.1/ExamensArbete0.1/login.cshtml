@@ -1,0 +1,36 @@
+﻿<html>
+<head>
+    @RenderPage("Share/meta.cshtml")
+
+    <title>Login</title>
+
+    @RenderPage("Share/commonCss.cshtml")
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-sm-12 col-md-4 mt-5 text-center">
+                <h2>Login page</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-sm-12 col-md-6">
+                <form class="mt-5 mt-xl-5">
+                    <label class="mt-2">Username</label>
+                    <input id="username" type="text" class="form-control" />
+                    <label class="mt-2 text-center">Password</label>
+                    <input id="password" type="password" class="form-control" />
+
+                    <input id="login" class="btn btn-block mt-4" type="submit" value="Login" />
+                    <div class="w-100 text-center">
+                        <a class="text-center" href="register.cshtml">Are you new? Register</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @RenderPage("Share/commonJs.cshtml")
+</body>
+</html>
