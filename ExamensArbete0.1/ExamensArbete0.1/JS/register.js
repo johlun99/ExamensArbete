@@ -15,10 +15,22 @@ $("#register-form").submit((e) => {
     }
 });
 
+// Send actual registration request
 function register() {
-
+    $.post("AJAX/register-user.cshtml",
+        {
+            username: username,
+            email: email,
+            password: password
+        },
+        (data, status) => {
+            console.log("\nData:\n" + data + "\nStatus:\n" + status);
+            
+        });
 }
 
+// Make sure all inputs in the form is valid in length and format
+// (returns false if not)
 function validateForm() {
     username = $("#username").val();
     email = $("#email").val();
@@ -38,17 +50,23 @@ function validateForm() {
         valid = false;
     } else if (!validateEmail(email)) {
         printError("Your email doesn't look real");
+        $("#email").val("").focus();
+
+        valid = false;
+    } else if (password.length < 8) {
+        printError("Your password needs to be atleast 8 characters long");
+        $("#re-password").val("");
+        $("#password").val("").focus();
+
+        valid = false;
+    } else if (re_password != password) {
+        printError("Your passwords doesn't match");
+        $("#re-password").val("");
+        $("#password").val("").focus();
+
         valid = false;
     }
 
     return valid;
 }
 
-function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-}
-
-function printError(msg) {
-    alert(msg);
-}
